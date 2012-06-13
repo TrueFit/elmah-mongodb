@@ -9,11 +9,7 @@ namespace Elmah
 {
 	public class NameValueCollectionSerializer : BsonBaseSerializer
 	{
-		private static readonly NameValueCollectionSerializer instance = new NameValueCollectionSerializer();
-		public static NameValueCollectionSerializer Instance
-		{
-			get { return instance; }
-		}
+		public static readonly NameValueCollectionSerializer Instance = new NameValueCollectionSerializer();
 
     public override object Deserialize(BsonReader bsonReader, Type nominalType, Type actualType, IBsonSerializationOptions options)
     {

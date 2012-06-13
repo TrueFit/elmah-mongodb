@@ -3,9 +3,9 @@ bin
 *.user
 *.suo
 *.orig
-packages
 _ReSharper.*
 *.Resharper
 *.Cache
 *.cache
 ~$*
+artifacts/

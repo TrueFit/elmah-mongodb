@@ -229,7 +229,6 @@ namespace Elmah
 
 		public static string GetConnectionString(IDictionary config)
 		{
-#if !NET_1_1 && !NET_1_0
 			//
 			// First look for a connection string name that can be 
 			// subsequently indexed into the <connectionStrings> section of 
@@ -247,7 +246,6 @@ namespace Elmah
 
 				return settings.ConnectionString ?? string.Empty;
 			}
-#endif
 
 			//
 			// Connection string name not found so see if a connection 

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>TrueFit.Elmah.MongoDB</id>
+    <version>1.4.2</version>
+    <title>Elmah Error Log in MongoDB</title>
+    <authors>Simon Green, Adam Kirkton</authors>
+    <owners>Adam Kirkton</owners>
+    <description>A library that enables storing an Elmah error log in MongoDB.</description>
+    <releaseNotes>Initial release via TrueFit NuGet.</releaseNotes>
+    <summary>Elmah Error Log storage in MongoDB</summary>
+    <language>en-US</language>
+    <projectUrl>https://github.com/TrueFit/elmah-mongodb</projectUrl>
+    <copyright>Copyright Simon Green and TrueFit, Inc. 2012</copyright>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <tags>error elmah mongodb</tags>
+    <dependencies>
+      <dependency id="elmah.corelibrary" version="1.2.1" />
+      <dependency id="mongocsharpdriver" version="[1.4.2]" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\src\Elmah.MongoDB\bin\Release\Elmah.MongoDB.dll" target="lib\net40" />
+  </files>
+</package>
