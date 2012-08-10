@@ -25,8 +25,3 @@ desc "Creates the TrueFit.Elmah.MongoDB NuGet package"
 task :create_nuget_package => [:clean_artifacts, :compile] do
   sh "nuget pack nuget/Package.nuspec -OutputDirectory artifacts"
 end
-
-desc "Creates and pushes the NuGet package"
-task :push_nuget_package => :create_nuget_package do
-  sh "nuget push #{FileList["artifacts/*.nupkg"].gsub(/\//, "\\")} nugetthetruefit -s http://nuget.truefitsolutions.com"
-end
