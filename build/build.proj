@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration>Release</Configuration>
+    <Platform>AnyCPU</Platform>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <SourceCodeFolder>..\src\</SourceCodeFolder>
+    <ArtifactsFolder>..\artifacts\</ArtifactsFolder>
+    <NuGetFolder>..\nuget\</NuGetFolder>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <NuSpecs Include="$(SourceCodeFolder)**\*.nuspec" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Projects Include="$(SourceCodeFolder)**\*.csproj" />
+  </ItemGroup>
+
+  <Target Name="Clean">
+    <ItemGroup>
+      <OldNuGetPackages Include="$(ArtifactsFolder)*.nupkg" />
+    </ItemGroup>
+    <Delete Files="@(OldNuGetPackages)" />
+    <MSBuild Projects="@(Projects)" Targets="Clean" Properties="Configuration=$(Configuration);Platform=$(Platform)" BuildInParallel="true" />
+  </Target>
+
+  <Target Name="Build">
+    <MSBuild Projects="@(Projects)" Targets="Build" Properties="Configuration=$(Configuration);Platform=$(Platform)" BuildInParallel="true" />
+  </Target>
+
+  <Target Name="CreateNuGetPackages" DependsOnTargets="Clean;Build">
+    <Exec Command="$(NuGetFolder)NuGet.exe pack %(NuSpecs.Identity) -OutputDirectory $(ArtifactsFolder)" />
+  </Target>
+
+  <Target Name="PushNuGetPackages" DependsOnTargets="CreateNuGetPackages">
+    <ItemGroup>
+      <NuGetPackages Include="$(ArtifactsFolder)*.nupkg">
+        <Server>$(NuGetServer)</Server>
+        <ApiKey>$(NuGetApiKey)</ApiKey>
+      </NuGetPackages>
+    </ItemGroup>
+    <Exec Command="$(NuGetFolder)NuGet.exe push %(NuGetPackages.Identity) -Source %(NuGetPackages.Server) -ApiKey %(NuGetPackages.ApiKey)" />
+  </Target>
+
+  <Target Name="UpdateNuGet">
+    <Exec Command="$(NuGetFolder)NuGet.exe update -self" />
+    <Delete Files="$(NuGetFolder)NuGet.exe.old" />
+  </Target>
+</Project>
