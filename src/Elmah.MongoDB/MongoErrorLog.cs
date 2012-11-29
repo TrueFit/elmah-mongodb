@@ -113,7 +113,10 @@ namespace Elmah
 		{
 			lock (Sync)
 			{
-				var database = MongoDatabase.Create(_connectionString);
+			  var mongoUrl = new MongoUrl(_connectionString);
+			  var client = new MongoClient(mongoUrl);
+			  var server = client.GetServer();
+				var database = server.GetDatabase(mongoUrl.DatabaseName);
 				if (!database.CollectionExists(_collectionName))
 				{
 					var options = CollectionOptions
