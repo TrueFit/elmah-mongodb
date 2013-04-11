@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>TrueFit.Elmah.MongoDB</id>
-    <version>1.8.0</version>
+    <version>1.8.1</version>
     <title>TrueFit.Elmah.MongoDB</title>
     <authors>Simon Green, Adam Kirkton</authors>
     <owners>Adam Kirkton</owners>
@@ -15,7 +15,7 @@
     <tags>error elmah mongodb</tags>
     <dependencies>
       <dependency id="elmah.corelibrary" version="1.2.2" />
-      <dependency id="mongocsharpdriver" version="1.8.0" />
+      <dependency id="mongocsharpdriver" version="1.8.1" />
     </dependencies>
   </metadata>
   <files>
