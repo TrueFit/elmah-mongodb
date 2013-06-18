@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>TrueFit.Web.Elmah.MongoDB</id>
+    <version>$version$</version>
+    <title>TrueFit.Web.Elmah.MongoDB</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <description>MongoDB provider for Elmah</description>
+    <releaseNotes></releaseNotes>
+    <summary>Elmah Error Log storage in MongoDB</summary>
+    <language>en-US</language>
+    <projectUrl>https://github.com/TrueFit/elmah-mongodb</projectUrl>
+    <copyright>$copyright$</copyright>
+    <tags>error elmah mongodb</tags>
+  </metadata>
+</package>

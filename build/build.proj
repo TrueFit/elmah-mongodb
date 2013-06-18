@@ -20,27 +20,24 @@
   </ItemGroup>
 
   <Target Name="Clean">
-    <ItemGroup>
-      <OldNuGetPackages Include="$(ArtifactsFolder)*.nupkg" />
-    </ItemGroup>
-    <Delete Files="@(OldNuGetPackages)" />
-    <MSBuild Projects="@(Projects)" Targets="Clean" Properties="Configuration=$(Configuration);Platform=$(Platform)" BuildInParallel="true" />
+    <RemoveDir Directories="$(ArtifactsFolder)" />
+    <MSBuild Projects="@(Projects)" Targets="Clean" Properties="Configuration=$(Configuration);Platform=$(Platform)" />
   </Target>
 
   <Target Name="Build">
-    <MSBuild Projects="@(Projects)" Targets="Build" Properties="Configuration=$(Configuration);Platform=$(Platform)" BuildInParallel="true" />
+    <MSBuild Projects="@(Projects)" Targets="Build" Properties="Configuration=$(Configuration);Platform=$(Platform)" />
   </Target>
 
   <Target Name="CreateNuGetPackages" DependsOnTargets="Clean;Build">
     <MakeDir Directories="$(ArtifactsFolder)" />
-    <Exec Command="$(NuGetFolder)NuGet.exe pack %(NuSpecs.Identity) -OutputDirectory $(ArtifactsFolder)" />
+    <Exec Command="$(NuGetFolder)NuGet.exe pack %(NuSpecs.RelativeDir)%(NuSpecs.Filename).csproj -Prop Configuration=$(Configuration) -OutputDirectory $(ArtifactsFolder)" />
   </Target>
 
   <Target Name="PushNuGetPackages" DependsOnTargets="CreateNuGetPackages">
     <ItemGroup>
       <NuGetPackages Include="$(ArtifactsFolder)*.nupkg">
-        <Server>$(NuGetServer)</Server>
-        <ApiKey>$(NuGetApiKey)</ApiKey>
+        <Server>http://nuget.truefitsolutions.com</Server>
+        <ApiKey>nugetthetruefit</ApiKey>
       </NuGetPackages>
     </ItemGroup>
     <Exec Command="$(NuGetFolder)NuGet.exe push %(NuGetPackages.Identity) -Source %(NuGetPackages.Server) -ApiKey %(NuGetPackages.ApiKey)" />
