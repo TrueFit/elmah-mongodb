@@ -4,6 +4,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{D17C6FEB-D01E-42C8-AA87-137A033F4880}"
 	ProjectSection(SolutionItems) = preProject
 		..\build\build.proj = ..\build\build.proj
+		..\build\MSBuild.ExtensionPack.VersionNumber.targets = ..\build\MSBuild.ExtensionPack.VersionNumber.targets
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrueFit.Web.Elmah.MongoDB", "TrueFit.Web.Elmah.MongoDB\TrueFit.Web.Elmah.MongoDB.csproj", "{41AFEE84-1EE9-4457-917A-52632B55A1BA}"
